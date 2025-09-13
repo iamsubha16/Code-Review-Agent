@@ -29,7 +29,7 @@ from prompt_template import (
 from dotenv import load_dotenv
 load_dotenv()
 
-model_name = "openai/gpt-oss-120b"
+model_name = "llama-3.3-70b-versatile"
 temperature = 0.01
 
 llm = ChatGroq(

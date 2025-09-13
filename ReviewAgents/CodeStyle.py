@@ -5,7 +5,7 @@ from pathlib import Path
 from enum import Enum
 import os
 
-from pydantic_core import ValidationError
+from pydantic import ValidationError
 
 import time
 from openai import RateLimitError
@@ -22,7 +22,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # LLM Setup
-model_name = "llama-3.3-70b-versatile"
+model_name = "openai/gpt-oss-20b"
 temperature = 0.01
 
 llm = ChatGroq(
@@ -178,19 +178,16 @@ def identify_language(state: State) -> dict:
         messages = [HumanMessage(content=prompt)]
         # response = llm.invoke(messages)
         response = enforce_rate_limit(messages)
-        print(f"\n--- Language Identification Response ---\n{response.content}\n")
         raw_response = extract_json_block(response.content)
         raw_response_dict = json.loads(raw_response)
         result = raw_response_dict.get("result")
-        
-        print(raw_response)
 
 
         if result:
             try:
                 language_obj = Language(**result)
-                print(f"Language detected: {language_obj.model_dump()}")
-                print("\n########################################################\n")
+                # print(f"Language detected: {language_obj.model_dump()}")
+                # print("\n########################################################\n")
                 return {"language": language_obj.model_dump()}
             except ValidationError as ve:
                 print(f"Validation error while parsing Language model: {ve}")
@@ -326,8 +323,6 @@ def pylint_analyze(state: State) -> dict:
     """
     Run pylint on a Python script and return structured analysis.
     """
-    
-    print("This is Python code, routing to Python analysis node.\n")
 
     try:
         from pylint.lint import Run
@@ -415,8 +410,8 @@ def pylint_analyze(state: State) -> dict:
         )
 
         print(f"Pylint analysis complete: {language_report.model_dump()}")
-        print("\n########################################################\n")
-        return {"language_Report": language_report.model_dump()}
+        # print("\n########################################################\n")
+        # return {"language_Report": language_report.model_dump()}
 
     except Exception as e:
         raise RuntimeError(f"Pylint analysis failed: {e}")
@@ -547,8 +542,8 @@ def analyze_python_and_sql(state: State) -> dict:
           report=report
         )
 
-        print(f"Analysis complete: {tool_report.model_dump()}")
-        print("\n########################################################\n")
+        # print(f"Analysis complete: {tool_report.model_dump()}")
+        # print("\n########################################################\n")
         return {"language_Report": tool_report.model_dump()}
 
     except Exception as e:
@@ -667,8 +662,8 @@ def analyze_inline_comments(state: State) -> dict:
         report=issues
     )
 
-    print(f"Inline comments analysis complete: {inline_report.model_dump()}")
-    print("\n########################################################\n")
+    # print(f"Inline comments analysis complete: {inline_report.model_dump()}")
+    # print("\n########################################################\n")
     return {"inline_Report": inline_report.model_dump()}
 
 
@@ -779,8 +774,8 @@ def summing_reports(state: State) -> dict:
         report=merged_issues
     )
 
-    print(f"Merged reports: {merged_report.model_dump()}")
-    print("\n########################################################\n")
+    # print(f"Merged reports: {merged_report.model_dump()}")
+    # print("\n########################################################\n")
     return {"merged_Report": merged_report.model_dump()}
 
 # Refactor Node
@@ -915,8 +910,8 @@ def apply_code_changes(state: State) -> dict:
             evaluation_details=validated_report
         )
 
-        print(f"Code Style: {validated_evaluation.model_dump()}")
-        print("\n########################################################\n")
+        # print(f"Code Style: {validated_evaluation.model_dump()}")
+        # print("\n########################################################\n")
         print(f"--- Ending Code Style And Consistency Reviewing on the file : {state.filename} ---")
         return {"evaluationReport": validated_evaluation.model_dump()}
         
