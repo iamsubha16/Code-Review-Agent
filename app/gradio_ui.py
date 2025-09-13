@@ -1,7 +1,3 @@
-"""
-Gradio UI for the AI Code Review application.
-"""
-
 import sys
 import os
 from typing import Generator, Tuple, Any

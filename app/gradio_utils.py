@@ -1,7 +1,3 @@
-"""
-Code processing functions for running different review agents.
-"""
-
 import os
 import shutil
 from typing import List, Dict, Any, Tuple, Generator

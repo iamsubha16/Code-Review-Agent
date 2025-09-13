@@ -19,7 +19,7 @@ SUPPORTED_EXTENSIONS = ['.py', '.sql']
 APP_TITLE = "🧠 AI Code Review Report Generator"
 APP_DESCRIPTION = "Upload `.py` or `.sql` files. Run code quality agents, then export the report."
 
-# Global storage for review results
+# Global data structure for review results
 codeStyle_file_level_review_list = []
 dry_file_level_review_list = []
 security_file_level_review_list = []

@@ -17,7 +17,7 @@ from app.summary import (
     generate_overall_repo_refactor_summary
 )
 
-
+# Report Generation Function
 def create_repo_level_df() -> pd.DataFrame:
     """
     Create repository-level summary dataframe.
@@ -145,7 +145,6 @@ def create_repo_level_df() -> pd.DataFrame:
 
     return pd.DataFrame(repo_level_data)
 
-
 def create_file_level_df() -> pd.DataFrame:
     """
     Create file-level summary dataframe.
@@ -156,7 +155,6 @@ def create_file_level_df() -> pd.DataFrame:
 
     # Merge the Dataframes
     return pd.concat([codeStyle_file_level_df, dry_file_level_df, security_file_level_df], ignore_index=True)
-
 
 def create_line_level_df() -> pd.DataFrame:
     """
@@ -181,7 +179,7 @@ def create_line_level_df() -> pd.DataFrame:
     # Merge the Dataframes
     return pd.concat([codeStyle_line_level_df, dry_line_level_df, security_line_level_df], ignore_index=True)
 
-
+# Displays Summary in UI
 def create_repo_summary_table() -> pd.DataFrame:
     """
     Create repository summary table for display.
@@ -189,7 +187,7 @@ def create_repo_summary_table() -> pd.DataFrame:
     df = create_repo_level_df()
     return df if not df.empty else pd.DataFrame([{"No data": "Repository summary is empty"}])
 
-
+# Generates Excel
 def generate_excel_report() -> str:
     """
     Generate Excel report with all analysis data.

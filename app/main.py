@@ -26,9 +26,9 @@ def main():
         
         # Launch with default settings - you can modify these as needed
         launch_app(
-            share=True,          # Set to False if you don't want a public link
-            server_name=None,    # Set to "0.0.0.0" to allow external connections
-            server_port=None     # Set to specific port number if needed
+            share=True,          
+            server_name="0.0.0.0",
+            server_port=None     
         )
         
     except KeyboardInterrupt:
