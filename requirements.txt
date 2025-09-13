@@ -1,0 +1,17 @@
+pydantic
+langchain 
+langchain_groq
+langchain-core 
+langgraph 
+dotenv 
+bandit 
+detect-secrets
+ipywidgets
+gradio>=3.40.0
+pandas
+datetime
+XlsxWriter
+openpyxl
+openai
+pylint
+pandas

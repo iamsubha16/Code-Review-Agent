@@ -1,0 +1,161 @@
+# 🧠 AI Code Review Report Generator
+
+An intelligent code review application that analyzes Python and SQL files using AI agents to provide comprehensive quality assessments across three key areas:
+
+- **Code Style & Consistency** - Formatting, naming conventions, readability
+- **DRY & Modularity** - Code duplication, abstraction, reusability  
+- **Security Compliance** - Security vulnerabilities and best practices
+
+## 🚀 Features
+
+- **Multi-Agent Analysis**: Three specialized AI agents analyze different aspects of code quality
+- **Interactive Web UI**: User-friendly Gradio interface for file uploads and progress tracking
+- **Comprehensive Reports**: Repository, file, and line-level analysis with Excel export
+- **Real-time Progress**: Live progress updates during analysis
+- **Multiple File Support**: Batch processing of Python (.py) and SQL (.sql) files
+
+## 📋 Prerequisites
+
+- Python 3.8 or higher
+- Groq API key (for LLM functionality)
+- ReviewAgents modules (CodeStyle, DRY, Security) - ensure these are in your project
+
+## 🔧 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd ai-code-review
+   ```
+
+2. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   # Edit .env and add your GROQ_API_KEY
+   ```
+
+## 🏃‍♂️ Usage
+
+### Quick Start
+
+```bash
+python main.py
+```
+
+This will:
+- Set up required directories
+- Launch the Gradio web interface
+- Open your browser to the application URL
+
+### Using the Application
+
+1. **Upload Files**: Use the file upload interface to select Python (.py) or SQL (.sql) files
+2. **Processing**: Watch real-time progress as AI agents analyze your code
+3. **Review Summary**: View the repository-level summary table with key metrics
+4. **Generate Report**: Click "Generate Detailed Review" for comprehensive Excel report
+5. **Download**: Download the multi-sheet Excel report with detailed analysis
+
+## 📊 Report Structure
+
+The generated Excel report contains three sheets:
+
+### Repository Review
+- Overall scores and summaries across all three analysis categories
+- Total vulnerability counts and AI-generated insights
+- High-level recommendations for improvement
+
+### Files Review  
+- Individual file analysis results
+- Per-file scores and issue summaries
+- Category-specific findings for each file
+
+### Line Level Review
+- Detailed line-by-line issues and recommendations
+- Specific code snippets and suggested fixes
+- Severity levels and improvement suggestions
+
+## 🔧 Project Structure
+
+```
+ai-code-review/
+├── main.py                 # Application entry point
+├── config.py              # Configuration settings
+├── gradio_ui.py           # Gradio interface
+├── code_processor.py      # File processing logic
+├── report_generator.py    # Report creation functions
+├── summary_generators.py  # LLM summary generation
+├── llm_client.py         # LLM client and rate limiting
+├── file_utils.py         # File handling utilities
+├── requirements.txt      # Python dependencies
+├── .env.example         # Environment variables template
+└── README.md           # This file
+```
+
+## ⚙️ Configuration
+
+Key settings in `config.py`:
+
+- **LLM Settings**: Model name, temperature, timeout
+- **File Settings**: Upload directory, supported extensions
+- **UI Settings**: Application title and descriptions
+
+## 🤖 AI Agents
+
+The application uses three specialized agents:
+
+1. **CodeStyle Agent**: Analyzes formatting, naming, and readability
+2. **DRY Agent**: Identifies code duplication and modularity issues  
+3. **Security Agent**: Scans for security vulnerabilities and compliance
+
+*Note: Ensure your ReviewAgents modules are properly installed and accessible*
+
+## 🔒 Environment Variables
+
+Required environment variables:
+
+- `GROQ_API_KEY`: Your Groq API key for LLM functionality
+
+## 🚨 Troubleshooting
+
+### Common Issues
+
+1. **Gradio Blocks Error**: `module 'gradio' has no attribute 'Blocks'`
+   ```bash
+   # Solution 1: Upgrade Gradio
+   pip install --upgrade gradio>=3.40.0
+   
+   # Solution 2: Run the package checker
+   python check_and_install.py
+   
+   # Solution 3: Force reinstall
+   pip uninstall gradio
+   pip install gradio>=3.40.0
+   ```
+
+2. **Import Errors**: Ensure ReviewAgents modules are in your Python path
+3. **API Errors**: Verify your GROQ_API_KEY is valid and has sufficient credits
+4. **File Processing Errors**: Check that uploaded files are valid Python or SQL files
+5. **Rate Limiting**: The application handles rate limits automatically with retries
+
+### Getting Help
+
+- Check console output for detailed error messages
+- Ensure all dependencies are installed correctly
+- Verify your environment variables are set properly
+
+## 📝 License
+
+[Add your license information here]
+
+## 🤝 Contributing
+
+[Add contribution guidelines here]
+
+## 📧 Support
+
+[Add support contact information here]
